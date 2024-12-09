@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  api-solid-pg:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: apisolid
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
