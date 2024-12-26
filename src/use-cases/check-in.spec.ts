@@ -19,8 +19,8 @@ describe('Check-in use case', () => {
       title: 'JavaScript Gym',
       description: '',
       phone: '',
-      latitude: new Decimal(0),
-      longitude: new Decimal(0),
+      latitude: new Decimal(8.7668108),
+      longitude: new Decimal(13.3955795),
     })
 
     vi.useFakeTimers()
