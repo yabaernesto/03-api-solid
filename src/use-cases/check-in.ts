@@ -1,10 +1,13 @@
-import type { CheckInsRepository } from '@/repositories/check-ins-respository'
-import type { GymsRepository } from '@/repositories/gyms-repository'
+// biome-ignore lint/style/useImportType: <explanation>
+import { CheckIn } from '@prisma/client'
+// biome-ignore lint/style/useImportType: <explanation>
+import { CheckInsRepository } from '@/repositories/check-ins-respository'
+// biome-ignore lint/style/useImportType: <explanation>
+import { GymsRepository } from '@/repositories/gyms-repository'
 import { MaxDistanceError } from '@/use-cases/errors/max-distance-error'
 import { MaxNumberOfCheckInsError } from '@/use-cases/errors/max-number-of-check-ins-error'
 import { ResourceNotFoundError } from '@/use-cases/errors/resource-not-found-error'
 import { getDistanceBetweenCoordinates } from '@/utils/get-distance-between-coordinates'
-import type { CheckIn } from '@prisma/client'
 
 interface CheckInUseCaseRequest {
   userId: string
