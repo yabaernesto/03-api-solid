@@ -2,10 +2,15 @@
 import { CheckIn } from '@prisma/client'
 // biome-ignore lint/style/useImportType: <explanation>
 import { CheckInsRepository } from '@/repositories/check-ins-respository'
+// biome-ignore lint/style/useImportType: <explanation>
+import { GymsRepository } from '@/repositories/gyms-repository'
+import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface CheckInUseCaseRequest {
   userId: string
   gymId: string
+  userLatitude: number
+  userLongitude: number
 }
 
 interface CheckInUseCaseResponse {
@@ -13,12 +18,21 @@ interface CheckInUseCaseResponse {
 }
 
 export class CheckInUseCase {
-  constructor(private checkInsRepository: CheckInsRepository) {}
+  constructor(
+    private checkInsRepository: CheckInsRepository,
+    private gymsRepository: GymsRepository
+  ) {}
 
   async execute({
     userId,
     gymId,
   }: CheckInUseCaseRequest): Promise<CheckInUseCaseResponse> {
+    const gym = await this.gymsRepository.findById(gymId)
+
+    if (!gym) {
+      throw new ResourceNotFoundError()
+    }
+
     const checkInOnSameDay = await this.checkInsRepository.findByUserIdOnDate(
       userId,
       new Date()
