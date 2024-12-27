@@ -1,6 +1,7 @@
 // biome-ignore lint/style/useImportType: <explanation>
 import { Gym } from '@prisma/client'
-import type { GymsRepository } from '@/repositories/gyms-repository'
+// biome-ignore lint/style/useImportType: <explanation>
+import { GymsRepository } from '@/repositories/gyms-repository'
 
 interface CreateGymUseCaseRequest {
   title: string
