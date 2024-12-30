@@ -1,6 +1,6 @@
 # API GymPass
 
-GymPass style app.
+GymPass style API.
 
 ## RFs (Requisitos Funcionais)
 

@@ -2,11 +2,17 @@ import { prisma } from '@/lib/prisma'
 // biome-ignore lint/style/useImportType: <explanation>
 import { UsersRepository } from '@/repositories/users-repository'
 // biome-ignore lint/style/useImportType: <explanation>
-import { Prisma, type User } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 
 export class PrismaUsersRepository implements UsersRepository {
-  findById(id: string): Promise<User | null> {
-    throw new Error('Method not implemented.')
+  async findById(id: string) {
+    const user = prisma.user.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    return user
   }
 
   async findByEmail(email: string) {
